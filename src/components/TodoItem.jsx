@@ -1,5 +1,22 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { updateToDo, removeToDo, completeToDo } from "../features/Todo/TodoSlice";
+
 function TodoItem({ todo }) {
-    
+    const [isTodoEditable,setIsTodoEditable] = useState(false);
+    const [todoMsg,setTodoMsg] = useState(todo.text);
+    const dispatch = useDispatch()
+    const editTodo = ()=> {
+        dispatch(updateToDo(todo.id,todoMsg));
+        setIsTodoEditable((prev) => !prev);
+
+    }
+    const deleteTodo = ()=>{
+        dispatch(removeToDo(todo.id));
+    }
+    const toggleCompleted = () => {
+        dispatch(completeToDo(todo.id));
+    }
 
     return (
         <div
