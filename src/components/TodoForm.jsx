@@ -8,7 +8,8 @@ function TodoForm() {
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(e.target.value!='') dispatch(addToDo(input));
+    if(e.target.value==='') alert(`ToDo Field can't be empty !!!`);
+    else dispatch(addToDo(input));
     setInput('');
   };
 
